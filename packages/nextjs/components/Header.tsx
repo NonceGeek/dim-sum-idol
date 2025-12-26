@@ -4,10 +4,10 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { hardhat } from "viem/chains";
+// import { hardhat } from "viem/chains";
 import { Bars3Icon, ChevronDownIcon } from "@heroicons/react/24/outline";
-import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
-import { useOutsideClick, useTargetNetwork } from "~~/hooks/scaffold-eth";
+// import { FaucetButton } from "~~/components/scaffold-eth";
+import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
 type HeaderMenuLink = {
   label: string;
@@ -20,21 +20,21 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Home",
     href: "/",
-  },
-  {
-    label: "Events",
-    href: "#",
-    subItems: [
-      // {
-      //   label: "以太坊之夏·广州站",
-      //   href: "/eth_summer",
-      // },
-      {
-        label: "以太坊 0xA 周年",
-        href: "/eth_10_years",
-      },
-    ],
-  },
+  }
+  // {
+  //   label: "Events",
+  //   href: "#",
+  //   subItems: [
+  //     // {
+  //     //   label: "以太坊之夏·广州站",
+  //     //   href: "/eth_summer",
+  //     // },
+  //     {
+  //       label: "以太坊 0xA 周年",
+  //       href: "/eth_10_years",
+  //     },
+  //   ],
+  // },
   // {
   //   label: "Debug Contracts",
   //   href: "/debug",
@@ -49,17 +49,23 @@ export const HeaderMenuLinks = () => {
     <>
       {menuLinks.map(({ label, href, icon, subItems }) => {
         const isActive = pathname === href;
-        
+
         if (subItems) {
           return (
             <li key={href} className="dropdown dropdown-hover">
-              <label tabIndex={0} className="hover:bg-secondary hover:shadow-md focus:!bg-secondary active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col cursor-pointer items-center">
+              <label
+                tabIndex={0}
+                className="hover:bg-secondary hover:shadow-md focus:!bg-secondary active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col cursor-pointer items-center"
+              >
                 {icon}
                 <span>{label}</span>
                 <ChevronDownIcon className="h-4 w-4" />
               </label>
-              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52 !top-[100%] !mt-0 !pt-0 !-translate-y-1">
-                {subItems.map((item) => (
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52 !top-[100%] !mt-0 !pt-0 !-translate-y-1"
+              >
+                {subItems.map(item => (
                   <li key={item.href}>
                     <Link href={item.href} className="py-2 hover:bg-base-300">
                       {item.label}
@@ -94,8 +100,8 @@ export const HeaderMenuLinks = () => {
  * Site header
  */
 export const Header = () => {
-  const { targetNetwork } = useTargetNetwork();
-  const isLocalNetwork = targetNetwork.id === hardhat.id;
+  // const { targetNetwork } = useTargetNetwork();
+  // const isLocalNetwork = targetNetwork.id === hardhat.id;
 
   const burgerMenuRef = useRef<HTMLDetailsElement>(null);
   useOutsideClick(burgerMenuRef, () => {
@@ -123,8 +129,8 @@ export const Header = () => {
             <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold leading-tight">ETH GuangZhou</span>
-            <span className="text-xs">粤来粤掂</span>
+            <span className="font-bold leading-tight">DimSum Idol</span>
+            <span className="text-xs">Base on 唔同原型，生產識講粤语嘅數字人！</span>
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
@@ -132,8 +138,8 @@ export const Header = () => {
         </ul>
       </div>
       <div className="navbar-end grow mr-4">
-        <RainbowKitCustomConnectButton />
-        {isLocalNetwork && <FaucetButton />}
+        {/* <RainbowKitCustomConnectButton /> */}
+        {/* {isLocalNetwork && <FaucetButton />} */}
       </div>
     </div>
   );
